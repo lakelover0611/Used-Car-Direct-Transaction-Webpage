@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* html,
+        body {
+            height: 100%;
+            margin: 0;
+        } */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color:#ffffff;
+            margin: 0;
+            margin-top: 0px;
+            padding: 0;
+            /* padding: 20px; */
+        }
+
+        /* header */
+        .header {
+            /* margin-bottom: 20px; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f8f8f8;
+        }
+        .header nav {
+            display: flex;
+            gap: 20px;
+        }
+        .header nav a {
+            color: #4f5253;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .header nav a:hover {
+            color: #2767ff;
+        }
+        
+        /* main */
+        .mypage-container {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .profile-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .profile-info div {
+            display: flex;
+            flex-direction: column;
+            font-size: 1rem;
+        }
+        .profile-info .icons {
+            font-size: 1.5rem;
+            /* color: #000000; */
+        }
+        .profile-info div p:hover {
+            font-weight: bold;
+        }
+        .profile-info .icons i {
+            margin-left: 15px;
+            cursor: pointer;
+            color: #000000;
+        }
+        .profile-info .icons i:hover {
+            color: #007bff;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        .list-group-item i {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        .action-icon {
+            font-size: 1.1rem;
+            color: #6c757d;
+        }
+        .action-icon:hover {
+            color: black;
+        }
+        .collapse-content {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .car-list-container,
+        .wish-list-container {
+            max-height: 300px;
+            /* overflow-y: auto; */
+        }
+        .add-icon {
+            font-size: 20px;
+            color: #007bff;
+            cursor: pointer;
+        }
+        .add-icon:hover {
+            color: #0056b3;
+        }
+        .car-list,
+        .wish-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .car-list li,
+        .wish-list li {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .car-list li img,
+        .wish-list li img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+        .car-list li a,
+        .wish-list li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .car-list li a:hover,
+        .wish-list li a:hover {
+            color: #007bff;
+        }
+        .wish-icon {
+            margin-left: auto;
+            color: #cac9c9;
+            font-size: 1.5rem;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .wish-icon:hover {
+            color: #ff0000;
+        }
+        /* .back-btn {
+            color: #6c757d;
+            font-size: 1.5rem;
+        }
+        .back-btn:hover {
+            color: #000000;
+        } */
+
+        /* footer */
+        footer {
+            margin-top: 250px;
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+        footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center; 
+        }
+        footer .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        footer h6 {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        footer ul li {
+            margin-bottom: 5px;
+        }
+        footer ul li a {
+            text-decoration: none;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        footer ul li a:hover {
+            color: #007bff;
+        }
+        footer .app-download {
+            margin-top: 30px;
+        }
+        footer .app-download h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        footer .app-download form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        footer .app-download input {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            width: 200px;
+        }
+        footer .app-download button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        footer .app-download button:hover {
+            background-color: #0056b3;
+        }
+        footer hr {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+        footer .bottom-info {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        footer .bottom-info ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        footer .bottom-info ul li {
+            margin: 0 10px;
+        }
+        footer .bottom-info ul li a {
+            color: #6c757d;
+            text-decoration: none;
+        }
+        footer .bottom-info ul li a:hover {
+            text-decoration: underline;
+        }
+        footer .bottom-info p.copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th,
+        .table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .table thead th {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <a href="/main.html" class="navbar-brand">
+            <img src="/front/src/assets/icons/logo.png" alt="KRCAR" style="height: 40px;">
+        </a>
+        <nav class="ms-auto">
+            <a href="/sell.html" class="sell-btn">판매하기</a>
+            <a href="/login.html" class="me-3 text-decoration-none">로그인</a>
+            <a href="/mypage.html" class="text-decoration-none">마이페이지</a>
+        </nav>
+    </header>
+
+    <main class="mypage-container">
+        <div>
+            <!-- <i class="fas fa-arrow-left back-btn" onclick="history.back()"></i> -->
+            <h1>마이 페이지</h1>
+        </div>
+
+        <section class="profile-info">
+            <div>
+                <p>${id}님, 안녕하세요</p>
+            </div>
+            <nav class="icons" aria-label="User actions">
+                <a href="/main.html"><i class="fas fa-home"></i></a>
+                <i class="fas fa-bell"></i>
+            </nav>
+        </section>
+
+        <nav aria-label="Main menu">
+            <ul>
+                <li class="list-group-item" onclick="toggleCollapse('orderHistory')">
+                    주문 내역 <i class="fas fa-chevron-down action-icon"></i>
+                </li>
+                <div id="orderHistory" class="collapse-content" style="display:none;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>상품명</th>
+                                <th>가격</th>
+                                <th>수량</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>상품 A</td>
+                                <td>10,000원</td>
+                                <td>1개</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <li class="list-group-item" onclick="toggleCollapse('wishlist')">
+                    찜한 차 <i class="fas fa-chevron-down action-icon"></i>
+                </li>
+                <div id="wishlist" class="collapse-content" style="display:none;">
+                    <div class="wish-list-container">
+                        <ul class="wish-list">
+                            <li>
+                                <img src="/src/assets/images/car.jpg" alt="기아 더 뉴 카니발">
+                                <a href="/car-details/1.html">기아 더 뉴 카니발</a>
+                                <i class="fas fa-heart wish-icon"></i>
+                            </li>
+                            <li>
+                                <img src="/src/assets/images/car.jpg" alt="현대 아반떼">
+                                <a href="/car-details/2.html">현대 아반떼</a>
+                                <i class="fas fa-heart wish-icon"></i>
+                            </li>
+                            <li>
+                                <img src="/src/assets/images/car.jpg" alt="현대 아반떼">
+                                <a href="/car-details/2.html">현대 아반떼</a>
+                                <i class="fas fa-heart wish-icon"></i>
+                            </li>
+                            <li>
+                                <img src="/src/assets/images/car.jpg" alt="현대 아반떼">
+                                <a href="/car-details/2.html">현대 아반떼</a>
+                                <i class="fas fa-heart wish-icon"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <li class="list-group-item" onclick="toggleCollapse('soldItems')">
+                    판매하기 <i class="fas fa-chevron-down action-icon"></i>
+                </li>
+                <div id="soldItems" class="collapse-content" style="display:none;">
+                    <div class="car-list-container">
+                        <ul class="car-list">
+                            <li>
+                                <a href="/add-new-car.html" class="add-icon">
+                                    <i class="fas fa-plus"> 판매</i>
+                                </a>
+                            </li>
+                            <li>
+                                <img src="/src/assets/images/car.jpg" alt="기아 더 뉴 카니발">
+                                <a href="/car-details/1.html">기아 더 뉴 카니발</a>
+                            </li>
+                            <li>
+                                <img src="/src/assets/images/car.jpg" alt="기아 더 뉴 카니발">
+                                <a href="/car-details/1.html">기아 더 뉴 카니발</a>
+                            </li>
+                            <li>
+                                <img src="/src/assets/images/car.jpg" alt="기아 더 뉴 카니발">
+                                <a href="/car-details/1.html">기아 더 뉴 카니발</a>
+                            </li>
+                            <li>
+                                <img src="/src/assets/images/car.jpg" alt="기아 더 뉴 카니발">
+                                <a href="/car-details/1.html">기아 더 뉴 카니발</a>
+                            </li>
+                            <li>
+                                <img src="/src/assets/images/car.jpg" alt="기아 더 뉴 카니발">
+                                <a href="/car-details/1.html">기아 더 뉴 카니발</a>
+                            </li>
+                            <li>
+                                <img src="/src/assets/images/car.jpg" alt="기아 더 뉴 카니발">
+                                <a href="/car-details/1.html">기아 더 뉴 카니발</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <li class="list-group-item">
+                    <a href="/editInfo.html" class="text-decoration-none text-dark">회원정보 수정</a>
+                </li>
+            </ul>
+        </nav>
+    </main>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h6>국산</h6>
+                    <ul>
+                        <li><a href="#">국산차검색</a></li>
+                        <!-- <li><a href="#">엔카진단차량</a></li> -->
+                    </ul>
+                </div>
+                <div>
+                    <h6>수입</h6>
+                    <ul>
+                        <li><a href="#">수입차검색</a></li>
+                        <!-- <li><a href="#">엔카진단차량</a></li> -->
+                    </ul>
+                </div>
+                <div>
+                    <h6>전기·친환경</h6>
+                    <ul>
+                        <li><a href="#">전기·친환경차량</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6>내차팔기</h6>
+                    <ul>
+                        <li><a href="#">직거래 간편등록</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6>내차진단</h6>
+                    <ul>
+                        <li><a href="#">내차 진단하기</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="app-download">
+                <h3>무료 상담</h3>
+                <form>
+                    <input type="text" placeholder="연락처">
+                    <button type="button">상담신청</button>
+                </form>
+            </div>
+            <hr>
+            <div class="bottom-info">
+                <ul>
+                    <li><a href="#">회사소개</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                </ul>
+                <p>고객센터: 1599-5455 &nbsp; FAX: 02-754-8768 &nbsp; 대표메일: trust@encar.com &nbsp; 주소: 서울특별시 중구 통일로2길 16<br>
+                    사업자등록번호: 104-86-54476 &nbsp; 통신판매업신고: 제2014-서울중구-0393호 &nbsp; 대표자: 최세은</p>
+                <p class="copyright">&copy; 2024 Encar</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleCollapse(id) {
+            const content = document.getElementById(id);
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+
+</html>

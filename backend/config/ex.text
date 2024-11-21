@@ -1,0 +1,6 @@
+Configuration files (e.g., DB connection, environment)
+데이터베이스 연결을 설정하고 관리하는 파일이다. 
+데이터베이스를 연결 설정을 작성하고 데이터베이스에 연결할 때 사용하는 로직이 포함된다.
+ex : db.js
+     만약 몽고디비를 사용한다면 이 파일에서 MongoDB URL, 옵션등을 설정하고 
+     mongoose를 통해 데이터베이스에 연결할 수 있다.

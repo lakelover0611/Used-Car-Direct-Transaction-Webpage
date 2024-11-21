@@ -1,0 +1,6 @@
+Express route handlers
+API의 엔드포인트를 정의한다. 각 API에 대한 라우팅 설정
+ex : userRoutes.js
+     userController.js에 작성한 로직을 라우트와 연결해줘야 한다. 
+     이 파일은 라우팅 설정을 담당하며 어떤 경로로 들어온 요청이
+     어떤 컨트롤러 함수로 연결되지 설정한다. 

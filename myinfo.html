@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내정보페이지</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* container 내 label 태그를 모두 볼드체로 */
+        .container label {
+            /* font-weight: bold; */
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            height: 45px;
+        }
+
+        .save-btn:disabled {
+            background-color: #ccc;
+        }
+
+        /* .change-password {
+            color: #28a745;
+            cursor: pointer;
+            font-size: 0.9rem;
+        } */
+
+        
+        .modify {
+            /* background-color: #007bff;
+            color: white; */
+            border-radius: 5px;
+            height: 45px;
+            font-size: 1.1rem;
+            width: 100%;
+        }
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #6c757d;
+        }
+        .btn-secondary, .confirm {
+            width: 48%; /* 버튼을 한 줄에 두 개 위치시키기 */
+        }
+
+        .d-flex {
+            margin-top: 10px;
+        }
+
+        .back-btn {
+            color: #6c757d;
+            font-size: 1.5rem;
+        }
+
+        .back-btn:hover {
+            color: #000000;
+            /* 화살표 아이콘의 색상을 변경 */
+        }
+
+        /* 모달 스타일 */
+        .modal-body p {
+            margin-bottom: 20px;
+        }
+
+        .modal-footer {
+            border-top: none; /* 상단에 줄 제거 */
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 내 정보 섹션 -->
+    <div class="container shadow-lg">
+        <!-- 화살표 아이콘 -->
+        <i class="fas fa-arrow-left back-btn" onclick="history.back()"></i>
+        <h1>내 정보</h1>
+
+        <!-- 이름 입력 -->
+        <div class="mb-3">
+            <label for="name" class="form-label">이름 </label>
+            <!-- <input type="text" class="form-control" id="name" placeholder="김수현" readonly> -->
+            <span id="nameDisplay" class="data-display">김수현</span> <!-- 여기에서 이름이 표시됩니다 -->
+        </div>
+
+        <!-- 아이디 입력 -->
+        <div class="mb-3">
+            <label for="name" class="form-label">아이디 </label>
+            <!-- <input type="text" class="form-control" id="id" placeholder="dkfla564" readonly> -->
+            <span id="idDisplay" class="data-display">dkfla564</span> <!-- 여기에서 아이디가 표시됩니다 -->
+        </div>
+
+        <!-- 휴대전화번호 입력 -->
+        <div class="mb-3">
+            <label for="phone" class="form-label">휴대폰 번호</label>
+            <input type="text" class="form-control" id="phone" placeholder="010 5656 8989">
+        </div>
+
+        <!-- 이메일 입력 -->
+        <div class="mb-3">
+            <label for="email" class="form-label">이메일</label>
+            <input type="email" class="form-control" id="email" placeholder="gildongi@gmail.com">
+        </div>
+
+        <!-- <h2>비밀번호 변경</h2> -->
+
+        <!-- 현재 비밀번호 -->
+        <div class="mb-3">
+            <label for="current-password" class="form-label">현재 비밀번호</label>
+            <input type="password" class="form-control" id="current-password" placeholder="현재 비밀번호를 입력해 주세요.">
+        </div>
+
+        <!-- 새 비밀번호 -->
+        <div class="mb-3">
+            <label for="new-password" class="form-label">새 비밀번호</label>
+            <input type="password" class="form-control" id="new-password" placeholder="새로운 비밀번호를 입력해 주세요.">
+        </div>
+
+        <!-- 새 비밀번호 확인 -->
+        <!-- <div class="mb-3">
+            <label for="confirm-password" class="form-label">새 비밀번호 확인</label>
+            <input type="password" class="form-control" id="confirm-password" placeholder="새로운 비밀번호를 다시 입력해 주세요.">
+        </div> -->
+
+        <!-- 버튼들 -->
+        <div class="d-flex justify-content-between">
+            <!-- <button class="btn btn-secondary">이전으로</button> -->
+            <button class="modify btn btn-primary " data-bs-toggle="modal" data-bs-target="#confirmationModal">변경하기</button>
+        </div>
+    </div>
+
+    <!-- 모달 -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">확인</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>변경하시겠습니까?</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <button type="button" class="confirm btn btn-primary">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FontAwesome JS for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</body>
+
+</html>

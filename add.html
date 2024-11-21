@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>판매등록 페이지</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* header */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #f8f8f8;
+      }
+
+      .header nav {
+        display: flex;
+        gap: 20px;
+      }
+
+      .header nav a {
+        color: #4f5253;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .header nav a:hover {
+        color: #2767ff;
+      }
+
+      /* main */
+      main {
+        padding: 30px;
+        min-height: 70vh;
+      }
+
+      /* form-container */
+      .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      select,
+      input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 1rem;
+      }
+
+      .d-flex {
+        display: flex;
+        gap: 10px;
+      }
+
+      .save,
+      .cancle {
+        margin-top: 30px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .save {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .save:hover {
+        background-color: #0056b3;
+      }
+
+      .cancle {
+        background-color: #6c757d;
+        color: white;
+      }
+
+      .cancle:hover {
+        background-color: #5a6268;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+
+      /* footer */
+      /* footrer */
+      footer {
+        background-color: #f8f9fa;
+        padding: 60px 0;
+      }
+
+      footer .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        text-align: center;
+      }
+
+      footer .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+
+      footer h6 {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      footer ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      footer ul li {
+        margin-bottom: 5px;
+      }
+
+      footer ul li a {
+        text-decoration: none;
+        color: #6c757d;
+        font-size: 0.9rem;
+      }
+
+      footer ul li a:hover {
+        color: #007bff;
+      }
+
+      footer .app-download {
+        margin-top: 30px;
+      }
+
+      footer .app-download h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+
+      footer .app-download form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      footer .app-download input {
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        width: 200px;
+      }
+
+      footer .app-download button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+
+      footer .app-download button:hover {
+        background-color: #0056b3;
+      }
+
+      footer hr {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      footer .bottom-info {
+        color: #6c757d;
+        font-size: 0.9rem;
+      }
+
+      footer .bottom-info ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+
+      footer .bottom-info ul li {
+        margin: 0 10px;
+      }
+
+      footer .bottom-info ul li a {
+        color: #6c757d;
+        text-decoration: none;
+      }
+
+      footer .bottom-info ul li a:hover {
+        text-decoration: underline;
+      }
+
+      footer .bottom-info p.copyright {
+        margin-top: 20px;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 헤더 -->
+    <header class="header">
+      <a href="/main.html" class="navbar-brand">
+        <img
+          src="/front/src/assets/icons/logo.png"
+          alt="KRCAR"
+          style="height: 40px"
+        />
+      </a>
+      <nav class="ms-auto">
+        <a href="/sell.html" class="sell-btn">판매하기</a>
+        <a href="/login.html" class="me-3 text-decoration-none">로그인</a>
+        <a href="/mypage.html" class="text-decoration-none">마이페이지</a>
+      </nav>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main>
+      <section class="form-container">
+        <h2>내 차 팔기</h2>
+        <form>
+          <!-- 차량 모델명 -->
+          <div>
+            <label for="carModel">모델명</label>
+            <input
+              type="text"
+              id="carModel"
+              placeholder="차량 모델명을 입력하세요"
+            />
+          </div>
+
+          <!-- 제조사 -->
+          <div>
+            <label for="manufacturer">브랜드</label>
+            <select id="manufacturer">
+              <option selected>브랜드 선택</option>
+              <option value="1">기아</option>
+              <option value="2">현대</option>
+              <option value="3">쉐보레</option>
+              <option value="4">르노</option>
+              <option value="5">벤츠</option>
+              <option value="6">BMW</option>
+            </select>
+          </div>
+
+          <!-- 연식 -->
+          <div>
+            <label>연식(제조년도)</label>
+            <div class="d-flex">
+              <input
+                type="number"
+                placeholder="년"
+                min="1990"
+                max="2024"
+                required
+              />
+              <!-- <input type="number" placeholder="월" min="1" max="12" required> -->
+            </div>
+          </div>
+
+          <!-- 주행거리 -->
+          <div>
+            <label for="mileage">주행거리</label>
+            <input
+              type="number"
+              id="mileage"
+              placeholder="주행거리를 입력하세요"
+            />
+          </div>
+
+          <!-- 연료 -->
+          <div>
+            <label for="fuel">연료</label>
+            <select id="fuel">
+              <option selected>연료 선택</option>
+              <option value="1">가솔린</option>
+              <option value="2">디젤</option>
+              <option value="3">하이브리드</option>
+              <option value="4">전기</option>
+            </select>
+          </div>
+
+          <!-- 차량 판매 가격 -->
+          <div>
+            <label for="price">차량 판매 가격</label>
+            <input
+              type="number"
+              id="price"
+              placeholder="판매 가격을 입력하세요"
+            />
+          </div>
+
+          <!-- 차량 사진 업로드 -->
+          <div>
+            <label for="carImage">차량 사진</label>
+            <input type="file" id="carImage" />
+          </div>
+
+          <!-- 저장 / 취소 버튼 -->
+          <div class="btn-group">
+            <button type="submit" class="save">저장</button>
+            <button type="reset" class="cancle">취소</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <!-- 푸터 -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div>
+            <h6>국산</h6>
+            <ul>
+              <li><a href="#">국산차검색</a></li>
+            </ul>
+          </div>
+          <div>
+            <h6>수입</h6>
+            <ul>
+              <li><a href="#">수입차검색</a></li>
+            </ul>
+          </div>
+          <div>
+            <h6>전기·친환경</h6>
+            <ul>
+              <li><a href="#">전기·친환경차량</a></li>
+            </ul>
+          </div>
+          <div>
+            <h6>내차팔기</h6>
+            <ul>
+              <li><a href="#">직거래 간편등록</a></li>
+            </ul>
+          </div>
+          <div>
+            <h6>내차진단</h6>
+            <ul>
+              <li><a href="#">내차 진단하기</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="app-download">
+          <h3>무료 상담</h3>
+          <form>
+            <input type="text" placeholder="연락처" />
+            <button type="button">상담신청</button>
+          </form>
+        </div>
+        <hr />
+        <div class="bottom-info">
+          <ul>
+            <li><a href="#">회사소개</a></li>
+            <li><a href="#">이용약관</a></li>
+            <li><a href="#">개인정보처리방침</a></li>
+          </ul>
+          <p>
+            고객센터: 1599-5455 &nbsp; FAX: 02-754-8768 &nbsp; 대표메일:
+            trust@encar.com &nbsp; 주소: 서울특별시 중구 통일로2길 16<br />
+            사업자등록번호: 104-86-54476 &nbsp; 통신판매업신고:
+            제2014-서울중구-0393호 &nbsp; 대표자: 최세은
+          </p>
+          <p class="copyright">&copy; 2024 Encar</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

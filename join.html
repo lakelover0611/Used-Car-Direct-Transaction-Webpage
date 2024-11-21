@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            /* height: 100vh; */
+            /*이거하면 내용짤림*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .signup-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+            /* 상단에 50px 공간 확보 */
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            height: 45px;
+        }
+
+        .signup-btn {
+            background-color: #e84545;
+            border-radius: 5px;
+            height: 50px;
+            font-size: 1.2rem;
+        }
+
+        .signup-btn:hover {
+            background-color: #d73939;
+        }
+
+        .form-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        .required-label {
+            color: red;
+        }
+
+        .form-text {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+
+        .back-btn {
+            color: #6c757d;
+            font-size: 1.5rem;
+        }
+        .back-btn:hover {
+            color: #000000; /* 화살표 아이콘의 색상을 변경 */
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="signup-container shadow-lg">
+        <!-- 화살표 아이콘 -->
+        <i class="fas fa-arrow-left back-btn" onclick="history.back()"></i>
+        <h1>회원가입</h1>
+        
+
+        <!-- 이름 입력 -->
+        <div class="mb-3">
+            <label for="name" class="form-label">이름 <span class="required-label">*</span></label>
+            <input type="text" class="form-control" id="name" placeholder="이름 입력">
+        </div>
+
+        <!-- 아이디 입력 -->
+        <div class="mb-3">
+            <label for="username" class="form-label">아이디 <span class="required-label">*</span></label>
+            <input type="text" class="form-control" id="username" placeholder="영문과 숫자 포함 4-12자리">
+        </div>
+
+        <!-- 비밀번호 입력 -->
+        <div class="mb-3">
+            <label for="password" class="form-label">비밀번호 <span class="required-label">*</span></label>
+            <input type="password" class="form-control" id="password" placeholder="비밀번호 입력">
+        </div>
+
+        <!-- 비밀번호 확인 -->
+        <div class="mb-3">
+            <label for="passwordConfirm" class="form-label">비밀번호 확인 <span class="required-label">*</span></label>
+            <input type="password" class="form-control" id="passwordConfirm" placeholder="비밀번호 확인">
+        </div>
+
+        <!-- 휴대전화번호 입력 -->
+        <div class="mb-3">
+            <label for="phone" class="form-label">휴대전화번호 <span class="required-label">*</span></label>
+            <input type="text" class="form-control" id="phone" placeholder="'-' 제외하고 숫자만 입력">
+        </div>
+
+        <!-- 이메일 입력 -->
+        <div class="mb-3">
+            <label for="email" class="form-label">이메일</label>
+            <input type="email" class="form-control" id="email" placeholder="example@encar.com" oninput="showVerifyButton()">
+        </div>
+
+        <!-- 이메일 인증 버튼 (초기에는 숨겨져 있음) -->
+        <button id="emailVerifyBtn" class="btn btn-success w-100 email-verify-btn" style="display:none; margin-bottom: 15px;" >이메일 인증하기</button>
+
+        <!-- 완료 버튼 -->
+        <button type="submit" class="btn btn-danger w-100 signup-btn">완료</button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FontAwesome JS for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+    <script>
+        //이메일 입력하면 이메일 인증 버튼이 나타남
+        function showVerifyButton() {
+            const emailInput = document.getElementById('email');
+            const verifyBtn = document.getElementById('emailVerifyBtn');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (emailPattern.test(emailInput.value)) {
+                verifyBtn.style.display = 'block'; // 이메일 유효할 경우 버튼 표시
+            } else {
+                verifyBtn.style.display = 'none'; // 이메일 유효하지 않을 경우 버튼 숨기기
+            }
+        }
+    </script>
+</body>
+
+</html>

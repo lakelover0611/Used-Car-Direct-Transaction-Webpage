@@ -1,0 +1,3 @@
+Database models (e.g., DB connection, environment)
+데이터베이스 모델을 정의한다. (예 : MySQL)
+userModel.js
